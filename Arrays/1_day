@@ -1,1 +1,18 @@
+# 📅 Day 1: Find Minimum and Maximum in an Array
 
+class Solution {
+  public:
+    pair<int, int> getMinMax(vector<int> arr) {
+        int minval = arr[0];
+        int maxval = arr[0];
+        for(int i = 0;i<arr.size();i++){
+            if(minval>arr[i]){
+                minval = arr[i];
+            }
+            else if(arr[i]>maxval){
+                maxval = arr[i];
+            }
+        }
+        return {minval,maxval};
+    }
+};

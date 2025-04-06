@@ -1,0 +1,23 @@
+# 📅 Day 12: Longest Subarray with Sum K
+
+class Solution {
+  public:
+    int longestSubarray(vector<int>& arr, int k) {
+        unordered_map<long long,int> prefixSumindex;
+        long long prefixSum = 0;
+        int maxLen = 0;
+        for(int i = 0;i<arr.size();i++){
+            prefixSum += arr[i];
+            if(prefixSum == k){
+                maxLen = i + 1;
+            }
+            if(prefixSumindex.find(prefixSum - k) != prefixSumindex.end()){
+                maxLen = max(maxLen ,i - prefixSumindex[prefixSum - k]);
+            }
+            if(prefixSumindex.find(prefixSum) == prefixSumindex.end()){
+                prefixSumindex[prefixSum] = i;
+            }
+        }
+        return maxLen;
+    }
+};
